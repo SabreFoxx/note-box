@@ -1,0 +1,10 @@
+.sconsign.dblite
+compile_commands.json
+build/*
+!build/.gitkeep
+dist/*
+!dist/.gitkeep
+dependencies/*
+dependencies/SFML-master/*
+!build/dependencies/.gitkeep
+!build/dependencies/SFML-master/.gitkeep
