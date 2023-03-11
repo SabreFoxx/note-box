@@ -18,8 +18,7 @@ env = Environment(
 env.Tool('compilation_db')
 env.CompilationDatabase()
 
-
 src = Glob('build/*.cpp')
-game = env.Program(target = buildDir + '/game', source = [src])
-env.Install(distDir, game)
+app = env.Program(target = buildDir + '/notebox', source = [src])
+env.Install(distDir, app)
 
