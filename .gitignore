@@ -5,6 +5,8 @@ build/*
 dist/*
 !dist/.gitkeep
 dependencies/*
-dependencies/SFML-master/*
-!build/dependencies/.gitkeep
-!build/dependencies/SFML-master/.gitkeep
+!dependencies/.gitkeep
+
+!dependencies/SFML-master/dist/.gitkeep
+!dependencies/fruit-3.7.1/dist/.gitkeep
+
