@@ -1,12 +1,28 @@
 .sconsign.dblite
 compile_commands.json
+
 build/*
 !build/.gitkeep
 dist/*
 !dist/.gitkeep
-dependencies/*
+
 !dependencies/.gitkeep
 
-!dependencies/SFML-master/dist/.gitkeep
-!dependencies/fruit-3.7.1/dist/.gitkeep
+dependencies/SFML-master/*
+!dependencies/SFML-master/.gitkeep
+!dependencies/SFML-master/dist/
+dependencies/SFML-master/dist/*/
+!dependencies/SFML-master/dist/.gitignore
+!dependencies/SFML-master/src/
+dependencies/SFML-master/src/*
+!dependencies/SFML-master/src/.gitignore
+
+dependencies/fruit-3.7.1/*
+!dependencies/fruit-3.7.1/.gitkeep
+!dependencies/fruit-3.7.1/dist/
+dependencies/fruit-3.7.1/dist/*/
+!dependencies/fruit-3.7.1/dist/.gitignore
+!dependencies/fruit-3.7.1/src/
+dependencies/fruit-3.7.1/src/*
+!dependencies/fruit-3.7.1/src/.gitignore
 
