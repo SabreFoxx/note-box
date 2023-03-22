@@ -1,13 +1,24 @@
 #include "app.h"
+#include "filemanager/file/file.h"
 #include <exception>
 using namespace nb;
 using namespace sf;
+
+template<typename T>
+void printName(StorageObject<T>* storageObject) {
+  storageObject->sayName();
+}
 
 struct App::Impl {
   Impl(RenderWindow &window) : window{window} { }
   ~Impl() {}
 
   void init() {
+    Folder folder {"workspapce"};
+    File file {"exec.js"};
+    printName(&folder);
+    printName(&file);
+
     if (!font.loadFromFile("assets/fonts/DejaVuSansMono.ttf"))
       throw new std::exception{};
     welcomeText.setString("Welcome to notebox");

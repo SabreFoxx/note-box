@@ -24,7 +24,8 @@ env = Environment(
 env.Tool('compilation_db')
 env.CompilationDatabase()
 
-src = Glob('build/*.cpp')
-app = env.Program(target = buildDir + '/notebox', source = [src])
+filemanager = Glob(buildDir + '/filemanager/**/*.cpp')
+main = [buildDir + '/main.cpp', buildDir + '/app.cpp']
+app = env.Program(target = buildDir + '/notebox', source = [main, filemanager])
 env.Install(distDir, app)
 
