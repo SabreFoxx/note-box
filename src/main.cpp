@@ -1,12 +1,18 @@
+#include "app.h"
 #include <SFML/Graphics.hpp>
+#include <exception>
+
+using namespace nb;
 
 int main(int argc, char *argv[]) {
   sf::Vector2u resolution{960, 540};
   sf::RenderWindow window{sf::VideoMode{resolution}, "Note Box"};
-  sf::Font defaultFont;
-  if (!defaultFont.loadFromFile("assets/fonts/DejaVuSansMono.ttf"))
+  App app{window};
+  try {
+    app.init();
+  } catch (std::exception e) {
     return EXIT_FAILURE;
-  sf::Text welcomeText{"Welcome to notebox", defaultFont};
+  }
 
   sf::Event mainEvent;
   while (window.isOpen()) {
@@ -16,7 +22,7 @@ int main(int argc, char *argv[]) {
     }
 
     window.clear();
-    window.draw(welcomeText);
+    app.drawScreen();
     window.display();
   }
 
