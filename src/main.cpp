@@ -1,4 +1,6 @@
 #include "app.h"
+#include "filemanager/builders/directory-builder.h"
+#include "filemanager/directory/directory.h"
 #include <SFML/Graphics.hpp>
 #include <exception>
 
@@ -12,6 +14,13 @@ int main(int argc, char *argv[]) {
     app.init();
   } catch (std::exception e) {
     return EXIT_FAILURE;
+  }
+
+  try {
+    DirectoryBuilder b{};
+    Directory d = b.loadDirectory("assets/fontss");
+  } catch (std::exception &e) {
+    std::cerr << e.what() << std::endl;
   }
 
   sf::Event mainEvent;
