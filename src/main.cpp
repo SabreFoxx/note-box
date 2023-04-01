@@ -3,6 +3,7 @@
 #include "filemanager/directory/directory.h"
 #include <SFML/Graphics.hpp>
 #include <exception>
+#include <filesystem>
 
 using namespace nb;
 
@@ -18,7 +19,8 @@ int main(int argc, char *argv[]) {
 
   try {
     DirectoryBuilder b{};
-    Directory d = b.loadDirectory("assets/fontss");
+    Directory d = b.loadDirectory(std::filesystem::current_path());
+    d.listItems();
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
