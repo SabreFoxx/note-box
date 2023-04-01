@@ -5,7 +5,7 @@
 namespace nb {
 template <typename FileType> struct StorageObject {
   StorageObject(std::string name) : name{name} {}
-  void sayName() { static_cast<FileType *>(this)->sayNameImpl(); }
+  void sayName() { static_cast<FileType &>(*this).sayNameImpl(); }
 
   std::filesystem::path p;
   std::string name;

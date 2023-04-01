@@ -7,7 +7,7 @@ struct App {
   App(sf::RenderWindow &window);
   ~App();
 
-void init();
+  void init();
   void drawScreen();
   const sf::Font &getActiveFont();
 
