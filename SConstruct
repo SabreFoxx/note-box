@@ -26,7 +26,8 @@ env.CompilationDatabase()
 
 filemanager = Glob(buildDir + '/filemanager/**/*.cpp')
 drawing = Glob(buildDir + '/drawing/**/*.cpp')
+dependencyInjection = Glob(buildDir + '/di/*.cpp')
 main = [buildDir + '/main.cpp', buildDir + '/app.cpp']
-app = env.Program(target = buildDir + '/notebox', source = [main, filemanager, drawing])
+app = env.Program(target = buildDir + '/notebox', source = [main, filemanager, drawing, dependencyInjection])
 env.Install(distDir, app)
 

@@ -2,11 +2,11 @@
 #include "drawing/cascade-draw.hpp"
 
 namespace nb {
-struct FileView : CascadeDraw {
+struct FileView : public CascadeDraw {
   void draw() override;
 	void drawCurrent();
 
-  void drawBackground() override;
-  void drawForeground() override;
+  void drawBackground();
+  void drawForeground();
 };
 } // namespace nb

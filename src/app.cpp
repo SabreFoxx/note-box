@@ -7,18 +7,19 @@
 using namespace nb;
 using namespace sf;
 using namespace std;
+using namespace fruit;
 
 template <typename T> void printName(StorageObject<T> &storageObject) {
   storageObject.sayName();
 }
 
-struct App::Impl {
+struct ApplicationImpl : public Application {
   using Drawings = unique_ptr<CascadeDraw>;
 
-  Impl(RenderWindow &window) : window{window} {}
-  ~Impl() {}
+  INJECT(ApplicationImpl(RenderWindow *window)) : Application{window} {}
+  ~ApplicationImpl() {}
 
-  void init() {
+  virtual void init() override {
     Folder folder{"workspapce"};
     File file{"exec.js"};
     printName(folder);
@@ -30,24 +31,27 @@ struct App::Impl {
     welcomeText.setFont(getActiveFont());
   }
 
-  void draw() {
+  virtual void draw() override {
     for (auto &drawing : drawings) {
       drawing->draw();
     }
-    window.draw(welcomeText);
+    window->draw(welcomeText);
   }
 
   const Font &getActiveFont() { return font; }
 
   Font font{};
   Text welcomeText{};
-  RenderWindow &window;
   vector<Drawings> drawings;
 };
 
-App::App(RenderWindow &window) : impl{new Impl{window}} {}
-App::~App() = default;
+Component<Required<RenderWindow>, Application> getAppImplComponent() {
+  return createComponent().bind<Application, ApplicationImpl>();
+}
 
-void App::init() { impl->init(); }
-void App::drawScreen() { impl->draw(); }
-const Font &App::getActiveFont() { return impl->getActiveFont(); }
+// Application::Application(RenderWindow *window) : impl{new Impl{window}} {}
+// Application::~Application() = default;
+
+// void Application::init() { impl->init(); }
+// void Application::drawScreen() { impl->draw(); }
+// const Font &Application::getActiveFont() { return impl->getActiveFont(); }

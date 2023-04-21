@@ -5,14 +5,20 @@
 #include <exception>
 #include <filesystem>
 
+#include "di/components.h"
+#include <fruit/fruit.h>
+using fruit::Component;
+using fruit::Injector;
+
 using namespace nb;
 
 int main(int argc, char *argv[]) {
-  sf::Vector2u resolution{960, 540};
-  sf::RenderWindow window{sf::VideoMode{resolution}, "Note Box"};
-  App app{window};
+  Injector<Application> appInjector(getApp);
+  Application* app(appInjector);
+  auto window = app->window;
+
   try {
-    app.init();
+    app->init();
   } catch (std::exception e) {
     return EXIT_FAILURE;
   }
@@ -26,15 +32,15 @@ int main(int argc, char *argv[]) {
   }
 
   sf::Event mainEvent;
-  while (window.isOpen()) {
-    while (window.pollEvent(mainEvent)) {
+  while (window->isOpen()) {
+    while (window->pollEvent(mainEvent)) {
       if (mainEvent.type == sf::Event::Closed)
-        window.close();
+        window->close();
     }
 
-    window.clear();
-    app.drawScreen();
-    window.display();
+    window->clear();
+    app->draw();
+    window->display();
   }
 
   return EXIT_SUCCESS;
