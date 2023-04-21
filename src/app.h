@@ -1,24 +1,24 @@
 #pragma once
+
+#include "views/cascade-draw.hpp"
 #include <SFML/Graphics.hpp>
 #include <fruit/fruit.h>
 #include <memory>
 
 namespace nb {
 struct Application {
-  Application(sf::RenderWindow *window) : window{window} {};
+  Application(sf::RenderWindow *window, CascadeDraw *mainView)
+      : window{window}, mainView{mainView} {};
   ~Application() = default;
 
   virtual void init() = 0;
   virtual void draw() = 0;
-  sf::RenderWindow *window;
-  // TODO try to access a property directly from here
-  // const sf::Font &getActiveFont();
 
-  // private:
-  //   struct Impl;
-  //   std::unique_ptr<Impl> impl;
+  CascadeDraw *mainView;
+  sf::RenderWindow *window;
 };
 } // namespace nb
 
-fruit::Component<fruit::Required<sf::RenderWindow>, nb::Application>
+fruit::Component<fruit::Required<sf::RenderWindow, nb::CascadeDraw>,
+                 nb::Application>
 getAppImplComponent();

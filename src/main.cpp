@@ -13,9 +13,9 @@ using fruit::Injector;
 using namespace nb;
 
 int main(int argc, char *argv[]) {
-  Injector<Application> appInjector(getApp);
-  Application* app(appInjector);
-  auto window = app->window;
+  Injector<Application, sf::RenderWindow> injector(getApp);
+  Application *app{injector.get<Application *>()};
+  sf::RenderWindow *window{injector.get<sf::RenderWindow *>()};
 
   try {
     app->init();
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     }
 
     window->clear();
-    app->draw();
+    app->mainView->draw();
     window->display();
   }
 

@@ -5,5 +5,5 @@
 #include <fruit/fruit.h>
 
 fruit::Component<sf::RenderWindow> getWindow();
-fruit::Component<nb::Application> getApp();
+fruit::Component<nb::Application, sf::RenderWindow> getApp();
 
